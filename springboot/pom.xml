@@ -37,7 +37,29 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
-	</dependencies>
+        <!-- 获取浏览器请求头相关信息-->
+        <dependency>
+            <groupId>eu.bitwalker</groupId>
+            <artifactId>UserAgentUtils</artifactId>
+            <version>1.20</version>
+        </dependency>
+        <!--根据ip 获取地理位置-->
+        <dependency>
+            <groupId>net.sourceforge.jregex</groupId>
+            <artifactId>jregex</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib -->
+        <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.33</version>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<plugins>

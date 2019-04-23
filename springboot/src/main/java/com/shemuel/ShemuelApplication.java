@@ -10,5 +10,4 @@ public class ShemuelApplication {
 		System.out.println("aaa");
 		SpringApplication.run(ShemuelApplication.class, args);
 	}
-
 }
