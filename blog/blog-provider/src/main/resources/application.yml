@@ -1,0 +1,32 @@
+server:
+  port: 80
+spring:
+  application:
+    name: blog-provider
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://39.106.70.195:3306/myproject
+    username: root
+    password: mysql950303..
+    type: com.alibaba.druid.pool.DruidDataSource  #阿里巴巴的连接池
+    dbcp2:
+      max-total: 5                                 #最大维持连接数
+      min-idle: 5                                   #最小维持连接数
+      initial-size: 5                               #初始化大小
+      max-wait-millis: 200                           #等待连接获取的最大等待时间
+  jpa:
+    show-sql: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://39.106.70.195:7000/eureka  #后面必须加个eureka 才能注册上去。
+
+  instance:
+    instance-id: blog-provider-80 #注册在eureka上的服务的实例的id
+    prefer-ip-address: true    #显示IP地址，方便查找
+info:
+  app.name: blog-app
+  company.name: www.shemuel.top
+  .artifactId: $project.artifactId$
+  buibuildld.version: $project.version$
