@@ -1,0 +1,11 @@
+server:
+  port: 7000
+eureka:
+  instance:
+    hostname: eureka7000.com  #eureka主机名
+  client:
+    register-with-eureka: false   #表示不向注册中心注册自己
+    fetch-registry: false          # 表示自己端就是注册中心，职责就是维护服务实例，不需要检索服务。
+    service-url:
+      #defaultZone: http://39.106.70.195:7000/eureka/ # 生产环境
+      defaultZone: http://127.0.0.1:7000/eureka/ # dev 开发环境的
