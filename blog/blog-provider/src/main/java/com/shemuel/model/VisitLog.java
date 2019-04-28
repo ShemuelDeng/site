@@ -1,6 +1,8 @@
 package com.shemuel.model;
 
+
 import javax.persistence.*;
+import java.util.Arrays;
 
 @Entity
 @Table(name = "VISIT_LOG", schema = "myproject", catalog = "")
@@ -11,7 +13,7 @@ public class VisitLog {
     private String address;
     private String ip;
     private String url;
-    private byte[] computerName;
+    private String computerName;
     private String operateSystem;
 
     @Basic
@@ -76,11 +78,11 @@ public class VisitLog {
 
     @Basic
     @Column(name = "COMPUTER_NAME", nullable = true)
-    public byte[] getComputerName() {
+    public String getComputerName() {
         return computerName;
     }
 
-    public void setComputerName(byte[] computerName) {
+    public void setComputerName(String computerName) {
         this.computerName = computerName;
     }
 
@@ -92,5 +94,19 @@ public class VisitLog {
 
     public void setOperateSystem(String operateSystem) {
         this.operateSystem = operateSystem;
+    }
+
+    @Override
+    public String toString() {
+        return "VisitLog{" +
+                "time='" + time + '\'' +
+                ", id='" + id + '\'' +
+                ", browseType='" + browseType + '\'' +
+                ", address='" + address + '\'' +
+                ", ip='" + ip + '\'' +
+                ", url='" + url + '\'' +
+                ", computerName='" + computerName + '\'' +
+                ", operateSystem='" + operateSystem + '\'' +
+                '}';
     }
 }
