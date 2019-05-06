@@ -56,12 +56,6 @@ public class Address implements Serializable {
 
     @Override
     public String toString() {
-        return "Address{" +
-                "ip='" + ip + '\'' +
-                ", country='" + country + '\'' +
-                ", region='" + region + '\'' +
-                ", city='" + city + '\'' +
-                ", isp='" + isp + '\'' +
-                '}';
+        return country + region + city + isp;
     }
 }
