@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shemuel.dao.VISIT_LOGMapper">
+  <resultMap id="BaseResultMap" type="com.shemuel.model.VISIT_LOG">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="TIME" jdbcType="VARCHAR" property="time" />
+    <result column="BROWSE_TYPE" jdbcType="VARCHAR" property="browseType" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="IP" jdbcType="VARCHAR" property="ip" />
+    <result column="URL" jdbcType="VARCHAR" property="url" />
+    <result column="COMPUTER_NAME" jdbcType="VARCHAR" property="computerName" />
+    <result column="OPERATE_SYSTEM" jdbcType="VARCHAR" property="operateSystem" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, TIME, BROWSE_TYPE, ADDRESS, IP, URL, COMPUTER_NAME, OPERATE_SYSTEM
+  </sql>
+  <select id="selectByExample" parameterType="com.shemuel.model.VISIT_LOGExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from visit_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from visit_log
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from visit_log
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shemuel.model.VISIT_LOGExample">
+    delete from visit_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shemuel.model.VISIT_LOG">
+    insert into visit_log (ID, TIME, BROWSE_TYPE, 
+      ADDRESS, IP, URL, COMPUTER_NAME, 
+      OPERATE_SYSTEM)
+    values (#{id,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, #{browseType,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{computerName,jdbcType=VARCHAR}, 
+      #{operateSystem,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shemuel.model.VISIT_LOG">
+    insert into visit_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="time != null">
+        TIME,
+      </if>
+      <if test="browseType != null">
+        BROWSE_TYPE,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="ip != null">
+        IP,
+      </if>
+      <if test="url != null">
+        URL,
+      </if>
+      <if test="computerName != null">
+        COMPUTER_NAME,
+      </if>
+      <if test="operateSystem != null">
+        OPERATE_SYSTEM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="browseType != null">
+        #{browseType,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="computerName != null">
+        #{computerName,jdbcType=VARCHAR},
+      </if>
+      <if test="operateSystem != null">
+        #{operateSystem,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shemuel.model.VISIT_LOGExample" resultType="java.lang.Long">
+    select count(*) from visit_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update visit_log
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.time != null">
+        TIME = #{record.time,jdbcType=VARCHAR},
+      </if>
+      <if test="record.browseType != null">
+        BROWSE_TYPE = #{record.browseType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        ADDRESS = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ip != null">
+        IP = #{record.ip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url != null">
+        URL = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.computerName != null">
+        COMPUTER_NAME = #{record.computerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operateSystem != null">
+        OPERATE_SYSTEM = #{record.operateSystem,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update visit_log
+    set ID = #{record.id,jdbcType=VARCHAR},
+      TIME = #{record.time,jdbcType=VARCHAR},
+      BROWSE_TYPE = #{record.browseType,jdbcType=VARCHAR},
+      ADDRESS = #{record.address,jdbcType=VARCHAR},
+      IP = #{record.ip,jdbcType=VARCHAR},
+      URL = #{record.url,jdbcType=VARCHAR},
+      COMPUTER_NAME = #{record.computerName,jdbcType=VARCHAR},
+      OPERATE_SYSTEM = #{record.operateSystem,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shemuel.model.VISIT_LOG">
+    update visit_log
+    <set>
+      <if test="time != null">
+        TIME = #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="browseType != null">
+        BROWSE_TYPE = #{browseType,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        IP = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="computerName != null">
+        COMPUTER_NAME = #{computerName,jdbcType=VARCHAR},
+      </if>
+      <if test="operateSystem != null">
+        OPERATE_SYSTEM = #{operateSystem,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shemuel.model.VISIT_LOG">
+    update visit_log
+    set TIME = #{time,jdbcType=VARCHAR},
+      BROWSE_TYPE = #{browseType,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      IP = #{ip,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR},
+      COMPUTER_NAME = #{computerName,jdbcType=VARCHAR},
+      OPERATE_SYSTEM = #{operateSystem,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

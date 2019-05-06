@@ -10,7 +10,7 @@ public class PageController {
         return "index";
     }
     @RequestMapping("*")
-    public String error() {
+    public String aa() {
         return "404";
     }
 }

@@ -14,8 +14,8 @@ public class Configuration extends WebMvcConfigurerAdapter {
     private HandleInterceptor handleInterceptor;
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        // 取消对静态资源的拦截
-        registry.addInterceptor(handleInterceptor).addPathPatterns("/*").excludePathPatterns("classpath:/static/");
+        //
+        registry.addInterceptor(handleInterceptor).addPathPatterns("/index","/home", "/");
     }
 
     @Bean

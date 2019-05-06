@@ -1,6 +1,10 @@
 package com.shemuel.utils;
 
+import com.alibaba.fastjson.JSON;
+
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
 public class WebUtil {
     /**
@@ -26,5 +30,18 @@ public class WebUtil {
             ip = request.getRemoteAddr();
         }
         return ip;
+    }
+
+    public static Map<String, Object> responseMap(String message, int status, Object object) {
+
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("status", status);
+        result.put("message", message);
+        if (object instanceof String) {
+            result.put("data", object);
+        } else {
+            result.put("data", JSON.toJSONString(object));
+        }
+        return result;
     }
 }

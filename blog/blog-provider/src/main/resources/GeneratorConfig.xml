@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+		"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+	<context id="dm6Tables" targetRuntime="MyBatis3">
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>  
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin> 
+         <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin> 
+		<commentGenerator>
+			<!-- 避免生成注解 <pr opertyname="suppressDate" value="true" /> -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://39.106.70.195:3306/myproject??ignoreCase=true"
+			userId="*" password="*" />
+
+		<!-- 指定生成的类型为java类型，避免数据库中number等类型字段 -->
+		<javaTypeResolver>
+			<!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- 生成model模型，对应的包，存放位置可以指定具体的路径,如/ProjectName/src，也可以使用MAVEN来自动生成 -->
+		<javaModelGenerator targetPackage="com.shemuel.model"
+			targetProject="src/main/java">
+			<!-- 是否在当前路径下新加一层schema,eg：fase路径com.oop.eksp.user.model， true:com.oop.eksp.user.model.[schemaName] -->
+			<!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
+			<property name="enableSubPackages" value="false" />
+			<!-- 设置是否在getter方法中，对String类型字段调用trim()方法 -->
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!--对应的xml mapper文件 -->
+		<sqlMapGenerator targetPackage="mappers" targetProject="src/main/resources/mybatis">
+			<!-- 是否在当前路径下新加一层schema,eg：fase路径com.oop.eksp.user.model， true:com.oop.eksp.user.model.[schemaName] -->
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+
+		<!-- 对应的dao接口 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.shemuel.dao"
+			targetProject="src/main/java">
+			<!-- 是否在当前路径下新加一层schema,eg：fase路径com.oop.eksp.user.model， true:com.oop.eksp.user.model.[schemaName] -->
+			<property name="enableSubPackages" value="false" />
+			<property name="useActualColumnNames" value="true" />
+		</javaClientGenerator>
+
+		<table schema="myproject" tableName="visit_log" domainObjectName="VISIT_LOG" enableDeleteByPrimaryKey="true" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true"><property name="useActualColumnNames" value="false" /></table>
+		<table schema="myproject" tableName="article" domainObjectName="ARTICLE" enableDeleteByPrimaryKey="true" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true"><property name="useActualColumnNames" value="false" /></table>
+        <table schema="myproject" tableName="message" domainObjectName="MESSAGE" enableDeleteByPrimaryKey="true" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true"><property name="useActualColumnNames" value="false" /></table>
+	</context>
+</generatorConfiguration>
