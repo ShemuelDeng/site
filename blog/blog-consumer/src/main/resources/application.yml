@@ -3,7 +3,7 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://39.106.70.195:7000/eureka
+      defaultZone: http://127.0.0.1:7000/eureka
     register-with-eureka: false # 消费者不向服务端注册
 spring:
   thymeleaf:
@@ -14,3 +14,11 @@ spring:
     cache: false
   resources:
     static-locations: classpath:/static/
+feign:
+  hystrix:
+    enabled: true
+blog-provider:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.BestAvailableRule #配置规则 最空闲连接策略
+    ConnectTimeout: 500 #请求连接超时时间
+    ReadTimeout: 1000 #请求处理的超时时间

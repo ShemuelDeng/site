@@ -20,7 +20,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Dalston.SR1</version>
+                <version>Finchley.SR2</version>
                 <!-- type scope两个属性代表是继承的父工程-->
                 <type>pom</type>
                 <scope>import</scope>
@@ -28,7 +28,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>1.5.9.RELEASE</version>
+                <version>2.0.5.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

@@ -1,23 +1,18 @@
 package com.shemuel.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.shemuel.model.ARTICLE;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.shemuel.model.CONSTANT;
-import com.shemuel.model.MESSAGEExample;
+import com.shemuel.model.PageResult;
 import com.shemuel.service.CommonService;
 import com.shemuel.utils.CommonUtils;
 import com.shemuel.utils.ExampleUtils;
 import com.shemuel.utils.SpringContextUtil;
 import org.springframework.web.bind.annotation.*;
-
-
-import javax.swing.*;
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.sql.Date;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
+
 
 @RestController
 public class CommonServiceImpl implements CommonService {
@@ -34,24 +29,31 @@ public class CommonServiceImpl implements CommonService {
             if (result == 1) {
                 return JSONObject.toJSONString(object);
             }
-            return CONSTANT.INSERT_FAILED;
         } catch (Exception e) {
             e.printStackTrace();
             if (e instanceof ClassNotFoundException){
                 return CONSTANT.TABLE_NOT_FOUND;
             }
-            return CONSTANT.INSERT_FAILED;
         }
+        return CONSTANT.INSERT_FAILED;
     }
 
     @PostMapping("/query")
-    public String query(@RequestParam String tableName, @RequestBody String paramsJson) {
+    public String query(@RequestParam String tableName, @RequestParam(value = "params",required = false) String params) {
         tableName = tableName.toUpperCase();
+        Map<String,Object> paramMap = JSONObject.parseObject("".equals(params)?null:params,Map.class);
+        Integer pageNum = 1, pageSize = 4;
+        if (paramMap != null) {
+            pageNum = paramMap.get("pageNum") == null ? 1 : (Integer) paramMap.get("pageNum");
+            pageSize = paramMap.get("pageSize") == null ? 4 : (Integer) paramMap.get("pageSize");
+        }
         try {
             Object mapper = SpringContextUtil.getContextMapper(tableName);
-            Object example = ExampleUtils.getSelectExample(tableName, paramsJson);
+            Object example = ExampleUtils.getSelectExample(tableName, paramMap);
             Method selectByExample = mapper.getClass().getDeclaredMethod("selectByExample",example.getClass() );
-            List result = (List)selectByExample.invoke(mapper, example);
+            PageHelper.startPage(pageNum,pageSize);
+            Page page = (Page)selectByExample.invoke(mapper, example);
+            PageResult result = new PageResult(page.getTotal(),page.getResult());
             return JSONObject.toJSONString(result);
         } catch (Exception e) {
             e.printStackTrace();

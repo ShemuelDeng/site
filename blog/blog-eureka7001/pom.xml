@@ -15,6 +15,7 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka-server</artifactId><!--eureka 服务-->
+            <version>1.4.6.RELEASE</version>
         </dependency>
     </dependencies>
     <build>

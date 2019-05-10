@@ -9,4 +9,5 @@ public class CONSTANT implements Serializable {
     public static final String TABLE_NOT_FOUND = "table not found!";
     public static final String QUERY_FAILED = "query failed!";
     public static final String PERCENT = "%";
+    public static final String TABLE_REQURIED = "parameter tableName is required!";
 }

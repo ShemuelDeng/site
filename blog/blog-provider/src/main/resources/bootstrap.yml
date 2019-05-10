@@ -1,13 +1,13 @@
 server:
-  port: 8080
+  port: 8082
 spring:
   application:
     name: blog-provider # 服务名
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://39.106.70.195:3306/myproject?useUnicode=true&characterEncoding=UTF-8
-    username: *
-    password: *
+    username: root
+    password: mysql950303..
     type: com.alibaba.druid.pool.DruidDataSource  #阿里巴巴的连接池
     dbcp2:
       max-total: 5                                 #最大维持连接数
@@ -21,16 +21,16 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://39.106.70.195:7000/eureka  #后面必须加个eureka 才能注册上去。
+      defaultZone: http://127.0.0.1:7000/eureka #后面必须加个eureka 才能注册上去。
 
   instance:
-    instance-id: blog-provider-8080 #注册在eureka上的服务的实例的id
+    instance-id: blog-provider-8082 #注册在eureka上的服务的实例的id
     prefer-ip-address: true    #显示IP地址，方便查找
 info:
   app.name: blog-app
   company.name: www.shemuel.top
-  .artifactId: $project.artifactId$
-  buibuildld.version: $project.version$
+  .artifactId: ${project.artifactId}$
+  buibuildld.version: ${project.version}$
 mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
   type-aliases-package: com.shemuel.mode

@@ -41,6 +41,12 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka</artifactId><!--eureka组件，后面没带server,即为客户端client-->
+            <version>1.4.6.RELEASE</version>
+        </dependency>
+        <!--断路器-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
         </dependency>
         <!--application.yml 文件的提示-->
         <dependency>
@@ -52,6 +58,7 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-feign</artifactId>
+            <version>1.4.6.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>net.sourceforge.nekohtml</groupId>
