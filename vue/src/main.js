@@ -9,7 +9,14 @@ import common from 'vue-components';
 import App from './App';
 import router from './router';
 import store from './store';
+import VueParticles from 'vue-particles';
+import VueSimplemde from 'vue-simplemde';
+import 'simplemde/dist/simplemde.min.css';
+import VueFab from 'vue-float-action-button';
+Vue.use(VueFab, { iconType: 'MaterialDesign' });
+Vue.use(VueParticles); // 粒子背景
 
+Vue.use(VueSimplemde);
 // 对权限进行控制
 // import { authorityControl } from 'vue-components';
 

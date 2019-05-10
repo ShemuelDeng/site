@@ -16,6 +16,13 @@ const proxyTable = {
         changeOrigin: true,
         // 重写规则
         pathRewrite: {}
+    },
+    '/consumer/': {
+        // 代理url
+        target: `http://39.106.70.195`,
+        changeOrigin: true,
+        // 重写规则
+        pathRewrite: {}
     }
 };
 // 遍历过程请勿修改

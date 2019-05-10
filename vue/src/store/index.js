@@ -1,7 +1,6 @@
 import Vue from 'vue';
-import { Vuex } from 'vue-components';
+import { Vuex, util } from 'vue-components';
 import { empty } from './modules/empty';
-
 Vue.use(Vuex);
 // 全局状态
 
@@ -36,6 +35,23 @@ const actions = {
      通过解构赋值直接使用
      fn({state},payload){}
      */
+    insert (context, payload) {
+        return util.$http({
+            url: `/consumer/insert/${payload.tableName}`,
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8'
+            },
+            data: payload.data
+        });
+    },
+    getArticles (context, payload = { params: '' }) {
+        return util.$http({
+            url: '/consumer/query/Article',
+            method: 'POST',
+            data: payload
+        });
+    }
 };
 
 // children modules

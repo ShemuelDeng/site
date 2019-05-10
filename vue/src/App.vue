@@ -14,4 +14,7 @@
 </script>
 
 <style>
+    /*.body {*/
+        /*background-image: url("./assets/images/bgimg.jpg");*/
+    /*}*/
 </style>
