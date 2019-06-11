@@ -1,7 +1,6 @@
 package com.shemuel.utils;
 
-import com.alibaba.fastjson.JSONObject;
-import com.shemuel.model.CONSTANT;
+import com.shemuel.model.Constant;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -31,7 +30,7 @@ public class ExampleUtils {
                 }
                 if (String.class.equals(fieldClazz)) { // 字符串
                     Method keyEqualTO = criteriaClazz.getDeclaredMethod("and" + CommonUtils.upperFirstWord(fieldName) + "Like", String.class);
-                    keyEqualTO.invoke(criteria, CONSTANT.PERCENT + paramMap.get(fieldName).toString() +CONSTANT.PERCENT);
+                    keyEqualTO.invoke(criteria, Constant.PERCENT + paramMap.get(fieldName).toString() + Constant.PERCENT);
                 } else if (Integer.class.equals(fieldClazz)){ // int 类型的
                     Method keyEqualTO = criteriaClazz.getDeclaredMethod("and" + CommonUtils.upperFirstWord(fieldName) + "EqualTo", Integer.class);
                     keyEqualTO.invoke(criteria, (Integer)paramMap.get(fieldName));
@@ -44,7 +43,7 @@ public class ExampleUtils {
                 String key = entry.getKey();
                 String value = entry.getValue().toString();
                 Method keyEqualTO = criteriaClazz.getDeclaredMethod("and" + CommonUtils.upperFirstWord(key) + "Like", String.class);
-                keyEqualTO.invoke(criteria, CONSTANT.PERCENT + value +CONSTANT.PERCENT);
+                keyEqualTO.invoke(criteria, Constant.PERCENT + value +Constant.PERCENT);
             }*/
             return exampleObject;
         } catch (Exception e) {

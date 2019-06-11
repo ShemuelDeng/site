@@ -1,19 +1,32 @@
 server:
   port: 80
+# 注册中心
 eureka:
   client:
     service-url:
-      defaultZone: http://127.0.0.1:7000/eureka
+      defaultZone: http://39.106.70.195:7000/eureka
     register-with-eureka: false # 消费者不向服务端注册
 spring:
   thymeleaf:
     prefix: classpath:/static/
     suffix: .html
-    mode: LEGACYHTML5
+    mode: HTML
     encoding: utf-8
     cache: false
+# 静态资源位置
   resources:
     static-locations: classpath:/static/
+#  rabbitmq:
+#    broker-url: tcp://127.0.0.1:61616
+#    packages:
+#      trust-all: true # 所有包可信任
+# 消息中间件
+  rabbitmq:
+    host: 39.106.70.195
+    port: 5672
+    username: guest
+    password: guest
+# feign 断路器
 feign:
   hystrix:
     enabled: true

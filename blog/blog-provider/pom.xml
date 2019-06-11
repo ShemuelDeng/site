@@ -49,6 +49,11 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+
         <!-- actuator监控信息完善 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -62,10 +67,11 @@
             <type>pom</type>
             <scope>import</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-eureka-client -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka</artifactId><!--eureka组件，后面没带server,即为客户端client-->
-            <version>1.4.6.RELEASE</version>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <version>2.0.0.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -85,13 +91,18 @@
             <version>1.0.31</version>
         </dependency>
 
-        <!--bootstrap.yml 文件的提示-->
+        <!--application.yml 文件的提示-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.apache.activemq/activemq-all -->
+<!--        <dependency>
+            <groupId>org.apache.rabbitmq</groupId>
+            <artifactId>rabbitmq-all</artifactId>
+        </dependency>-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
@@ -103,11 +114,10 @@
             <artifactId>logback-core</artifactId>
             <version>1.2.3</version>
         </dependency>
-        <!--<dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.15</version>
-        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
         <!-- 个人api jar 包-->
         <dependency>
             <groupId>com.shemuel</groupId>

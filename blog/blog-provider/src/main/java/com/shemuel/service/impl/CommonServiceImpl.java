@@ -3,18 +3,21 @@ package com.shemuel.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.shemuel.model.CONSTANT;
+import com.shemuel.model.Constant;
 import com.shemuel.model.PageResult;
 import com.shemuel.service.CommonService;
 import com.shemuel.utils.CommonUtils;
 import com.shemuel.utils.ExampleUtils;
 import com.shemuel.utils.SpringContextUtil;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 
-@RestController
+@RestController("commonService")
 public class CommonServiceImpl implements CommonService {
     @PostMapping("/insert")
     public String insert(@RequestParam("tableName") String tableName, @RequestBody String beanJson) {
@@ -32,10 +35,10 @@ public class CommonServiceImpl implements CommonService {
         } catch (Exception e) {
             e.printStackTrace();
             if (e instanceof ClassNotFoundException){
-                return CONSTANT.TABLE_NOT_FOUND;
+                return Constant.TABLE_NOT_FOUND;
             }
         }
-        return CONSTANT.INSERT_FAILED;
+        return Constant.INSERT_FAILED;
     }
 
     @PostMapping("/query")
@@ -58,9 +61,29 @@ public class CommonServiceImpl implements CommonService {
         } catch (Exception e) {
             e.printStackTrace();
             if (e instanceof ClassNotFoundException){
-                return CONSTANT.TABLE_NOT_FOUND;
+                return Constant.TABLE_NOT_FOUND;
             }
         }
-        return CONSTANT.QUERY_FAILED;
+        return Constant.QUERY_FAILED;
+    }
+    @PostMapping("/delete")
+    @Transactional
+    public String deleteByPrimaryKey(@RequestParam("tableName")String tableName, @RequestParam("ids")String ids) {
+        tableName = tableName.toUpperCase();
+        if (CommonUtils.isEmptyString(ids)){
+            return Constant.EMPTY_PARAMS;
+        }
+        List<String> idArray = Arrays.asList(ids.split(","));
+        try {
+            Object mapper = SpringContextUtil.getContextMapper(tableName);
+            Method deleteByprimaryKey = mapper.getClass().getDeclaredMethod("deleteByPrimaryKey",String.class);
+            for (String id: idArray) {
+                deleteByprimaryKey.invoke(mapper,id);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "error:" + e.getMessage();
+        }
+        return "success";
     }
 }

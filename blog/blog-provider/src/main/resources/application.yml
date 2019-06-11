@@ -2,18 +2,32 @@ server:
   port: 8082
 spring:
   application:
-    name: blog-provider # 服务名
+    name: blog-provider-dev # 服务名
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://39.106.70.195:3306/myproject?useUnicode=true&characterEncoding=UTF-8
-    username: root
-    password: mysql950303..
+    url:
+    username:
+    password:
     type: com.alibaba.druid.pool.DruidDataSource  #阿里巴巴的连接池
     dbcp2:
       max-total: 5                                 #最大维持连接数
       min-idle: 5                                   #最小维持连接数
       initial-size: 5                               #初始化大小
       max-wait-millis: 200                           #等待连接获取的最大等待时间
+#  rabbitmq:
+#    broker-url: tcp://127.0.0.1:61616
+  rabbitmq:
+    host: 39.106.70.195
+    port: 5672
+    username:
+    password:
+# java 邮件服务
+  mail:
+    host: smtp.qq.com
+    username: 1241916209@qq.com
+    password:
+    default-encoding: UTF-8
+    protocol: smtp
 #  jackson:
 #    date-format: yyyy-MM-dd HH:mm:ss
 #    time-zone: GMT+8
@@ -21,8 +35,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://127.0.0.1:7000/eureka #后面必须加个eureka 才能注册上去。
-
+      defaultZone: http://39.106.70.195:7000/eureka #后面必须加个eureka 才能注册上去。
   instance:
     instance-id: blog-provider-8082 #注册在eureka上的服务的实例的id
     prefer-ip-address: true    #显示IP地址，方便查找
@@ -35,6 +48,3 @@ mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
   type-aliases-package: com.shemuel.mode
   mapper-locations: classpath:mybatis/mappers/*.xml
-logging:
-  level:
-    com.shemuel.dao : debug

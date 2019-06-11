@@ -21,9 +21,8 @@ public class SpringContextUtil implements ApplicationContextAware {
         if (CommonUtils.isEmptyString(tableName)) {
             return null;
         }
-        Class clazz = Class.forName("com.shemuel.dao." + tableName.toUpperCase() + "Mapper");;
-        Object object  = applicationContext.getBean(clazz);;
-        return object;
+        Class clazz = Class.forName("com.shemuel.dao." + tableName.toUpperCase() + "Mapper");
+        return applicationContext.getBean(clazz);
     }
 
     public static Class<?> getBeanClass(String tableName) throws ClassNotFoundException{
